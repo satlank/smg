@@ -1,0 +1,4 @@
+smg
+===
+
+simple music generator
