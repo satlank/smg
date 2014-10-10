@@ -16,7 +16,7 @@ def generateScript(release, genres):
 
 	albumtitle = release['title']
 	albumdate = release['date']
-	albumartist =release['artist-credit-phrase']
+	albumartist = release['artist-credit-phrase']
 	mb_albumid = release['id']
 
 	for medium in release['medium-list']:
@@ -45,6 +45,8 @@ def generateScript(release, genres):
 			phrase += '\t--tag=title="{}" \\\n'.format(trackTitle)
 			for artist in rec['artist-credit']:
 				phrase += '\t--tag=artist="{}" \\\n'.format(artist['artist']['name'])
+			phrase += '\t--tag=albumartist="{}" \\\n'.format(albumartist
+                        )
 			phrase += '\t--tag=date="{}" \\\n'.format(albumdate)
 			phrase += '\t--tag=album="{}" \\\n'.format(albumtitle)
 			for genre in genres:
