@@ -31,6 +31,7 @@ def generateScript(release, genres):
     totalNum=1
     for medium in release['medium-list']:
         mediumNum = int(medium['position'])
+        mediumTitle = medium['title'] if 'title' in medium.keys() else None
         for track in medium['track-list']:
             trackNum = int(track['number'])
             rec = track['recording']
@@ -53,6 +54,8 @@ def generateScript(release, genres):
                 phrase += '\t--tag=genre="{}" \\\n'.format(genre)
             phrase += '\t--tag=tracknumber="{:02}" \\\n'.format(trackNum)
             phrase += '\t--tag=discnumber="{:02}" \\\n'.format(mediumNum)
+            if mediumTitle is not None:
+                phrase += '\t--tag=disctitle="{}" \\\n'.format(mediumTitle)
             phrase += '\t--tag=musicbrainz-albumid="{}" \\\n'.format(mb_albumid)
             phrase += '\t-o "{}" \n'.format(flac)
             totalNum+=1
