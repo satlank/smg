@@ -19,8 +19,12 @@ def generateScript(release, genres):
     albumartist = release['artist-credit-phrase']
     mb_albumid = release['id']
 
+    isFirst = True
     for medium in release['medium-list']:
         mediumNum = int(medium['position'])
+        if not isFirst:
+            script += '\nread -p "Insert disc {} and press any key to continue"\n\n'.format(mediumNum)
+        isFirst = False
         for track in medium['track-list']:
             trackNum = int(track['number'])
             script += "cdparanoia -B {i}-{i}\n".format(i=trackNum)
