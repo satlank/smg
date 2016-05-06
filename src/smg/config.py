@@ -30,7 +30,7 @@ def createConfig(cfgFileName = DefaultConfigFileName):
                 raise Exception('Must enter at least one genre')
             break
         genres.append(genre)
-    pickleFileName = input("Data file name (empty for defaul):  ")
+    pickleFileName = input("Data file name (empty for default):  ")
     if pickleFileName == '':
         pickleFileName = DefaultStoreFileName
 
