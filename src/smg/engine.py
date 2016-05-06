@@ -49,6 +49,10 @@ def generateScript(release, genres):
             phrase = 'flac --best -V {} \\\n'.format(wav)
             phrase += '\t--tag=title="{}" \\\n'.format(trackTitle)
             for artist in rec['artist-credit']:
+                if type(artist) is not dict:
+                    # Catch join phrase between artists, e.g.
+                    # [artist1, 'remixed by', artist2]
+                    continue
                 phrase += '\t--tag=artist="{}" \\\n'.format(artist['artist']['name'])
             phrase += '\t--tag=albumartist="{}" \\\n'.format(albumartist
             )
